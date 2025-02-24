@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  postgres_db_msrv_be:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5439:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - msrv:/var/lib/postgresql/data
+
+volumes:
+  msrv:
