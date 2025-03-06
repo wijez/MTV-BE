@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class EngineConfig(AppConfig):
+class UserConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'MSRV.engine'
+    name = 'MSRV.apps.user'
