@@ -1,10 +1,9 @@
-from rest_framework_simplejwt.serializers import TokenVerifySerializer
 from rest_framework import serializers
-from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.serializers import TokenVerifySerializer
 
 User = get_user_model()
-
 
 class CustomTokenVerifySerializer(TokenVerifySerializer):
     email = serializers.EmailField()

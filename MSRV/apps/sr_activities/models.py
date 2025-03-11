@@ -1,0 +1,2 @@
+from MSRV.apps.sr_activities.models_folder.scientific_research import ScientificResearch
+from MSRV.apps.sr_activities.models_folder.scientific_research_activities import ScientificResearchActivity
