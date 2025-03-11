@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     #apps
-    'MSRV.apps.user'
+    'MSRV.apps.user',
+    'MSRV.apps.sr_activities'
 ]
 
 MIDDLEWARE = [
