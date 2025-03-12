@@ -8,6 +8,7 @@ from MSRV.apps.user.models import  User
 from MSRV.apps.utils.constant import AppStatus
 from MSRV.apps.user.serializers import (
     UserSerializer,
+    UserProfileSerializer,
     UserRegisterSerializer
 )
 
@@ -40,3 +41,16 @@ class UserDetailViewSet(GenericAPIView):
         user = self.request.user
         serializer = self.get_serializer(user)
         return Response(serializer.data)
+
+
+class UpdateUserViewSet(GenericAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserProfileSerializer
+
+    def put(self, request, *args, **kwargs):
+        profile = request.user.profile
+        serializer = self.get_serializer(profile, data=request.data)
+        if serializer.is_valid():
+            profile = serializer.save()
+            return Response(UserSerializer(profile.user).data)
+        return Response(serializer.errors)
