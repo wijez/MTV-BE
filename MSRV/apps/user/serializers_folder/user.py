@@ -6,6 +6,7 @@ from MSRV.apps.user.serializers_folder import (
     TypeEmailEnum,
 )
 from MSRV.apps.utils.send_email import sent_mail_verification
+from MSRV.apps.user.serializers_folder.user_profile import UserProfileSerializer
 
 class UserRegisterSerializer(serializers.ModelSerializer):
 
@@ -32,8 +33,15 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    profile = UserProfileSerializer(read_only=True)
 
     class Meta:
         model = User
         fields = "__all__"
         extra_kwargs = {'password': {'write_only': True}, 'verify_code': {'write_only': True}}
+
+    def get_fields(self):
+        fields = super().get_fields()
+        fields.pop('groups', None)
+        fields.pop('user_permissions', None)
+        return fields

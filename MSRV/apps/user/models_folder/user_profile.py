@@ -3,7 +3,7 @@ from MSRV.apps.user.models import User
 from MSRV.apps.utils.enum_type import DegreeEnum, DepartmentEnum
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     degree = models.CharField(max_length=30, null=False, blank=False, choices=DegreeEnum.choices(),
                             default=DegreeEnum.TS)
     department = models.CharField(max_length=30, null=False, blank=False, choices=DepartmentEnum.choices(),

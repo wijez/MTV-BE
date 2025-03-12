@@ -11,7 +11,8 @@ class ScientificResearchActivity(models.Model):
     conversion_time = models.IntegerField()
     proof = models.CharField(max_length=255)
     note = models.TextField(blank=True, null=True)
-    input = models.JSONField()  # Django 3.1+ hỗ trợ JSONField
+    input = models.JSONField()
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

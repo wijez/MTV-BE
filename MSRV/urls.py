@@ -30,6 +30,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     #    path('admin/', admin.site.urls),
-    path('user/', include("MSRV.apps.user.urls")),
+    path('', include("MSRV.apps.user.urls")),
+    path('', include("MSRV.apps.sr_activities.urls")),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
