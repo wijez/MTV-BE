@@ -15,7 +15,7 @@ class AppStatus(Enum):
     TOKEN_IS_INCORRECT = "TOKEN_IS_INCORRECT", 400, "The token is incorrect."
 
     USER_NOT_EXIST = "USER_NOT_EXIST", 404, "User does not exist."
-
+    USER_NOT_FORBIDDEN = "USER_NOT_FORBIDDEN", 403, "User not forbidden"
     @property
     def message(self):
         return {

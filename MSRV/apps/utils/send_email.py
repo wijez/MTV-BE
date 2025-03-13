@@ -10,7 +10,7 @@ from MSRV.apps.utils.template_mail import TemplateMail
 from MSRV.apps.utils.enum_type import TypeEmailEnum
 
 
-def sent_mail_verification(user, type_mail):
+def sent_mail_verification(user, type_mail, **kwargs):
     verify_code = get_random_string(length=8)
     user.verify_code = verify_code
     user.code_lifetime = timezone.now() + timedelta(minutes=10)
@@ -23,6 +23,9 @@ def sent_mail_verification(user, type_mail):
     elif type_mail == TypeEmailEnum.RESET_PASSWORD:
         message = TemplateMail.CONTENT_MAIL_RESET_PASSWORD(user.full_name, verify_code)
         template_mail = TemplateMail.SUBJECT_MAIL_RESET_PASSWORD
+    elif type_mail == TypeEmailEnum.REGISTER_FROM_ADMIN:
+        password = kwargs.get("password", "Mật khẩu không có sẵn")
+        message = TemplateMail.CONTENT_MAIL_REGISTER_FROM_ADMIN(user.email, verify_code,password)
     send_mail(
         template_mail,
         strip_tags(message),

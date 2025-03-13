@@ -17,3 +17,15 @@ class TemplateMail(object):
     <p>Trân trọng,</p>
     <p>Đội ngũ MSRV</p>
   </div>"""
+
+    CONTENT_MAIL_REGISTER_FROM_ADMIN = lambda email, otp_code, password :F"""
+    <div>
+    <p>Xin chào {email},</p>
+    <p>Tài khoản của bạn đã được tạo để kích hoạt vui lòng sử dụng mã OTP sau để xác nhận <strong>{otp_code}</strong>.</p>
+    <p> Sau khi kích hoạt có thể sử dụng với</p>
+    <br>
+    <p>Tài khoản: {email}</p><br>
+    <p>Mật khẩu: {password}</p>
+    <p>Trân trọng,</p>
+    <p>Đội ngũ MSRV</p>
+    """

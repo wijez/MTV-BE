@@ -21,6 +21,7 @@ class SystemRoleEnum(EnumType):
 class TypeEmailEnum(EnumType):
     REGISTER = "REGISTER"
     RESET_PASSWORD = "RESET_PASSWORD"
+    REGISTER_FROM_ADMIN = "REGISTER_FROM_ADMIN"
 
 class DegreeEnum(EnumType):
     TS = 'TS'
