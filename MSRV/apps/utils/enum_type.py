@@ -59,3 +59,9 @@ class StatusSREnum(EnumType):
     COMPLETE = "COMPLETE"
     NOT_COMPLETED ="NOT_COMPLETED"
     DELETED ="DELETED"
+
+class StatusSPEnum(EnumType):
+    OPEN = "OPEN"
+    PASSED = "PASSED"
+    NOT_PASSED = "NOT_PASSED"
+    CANCELLED = "CANCELLED"

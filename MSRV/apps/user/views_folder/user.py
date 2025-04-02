@@ -74,7 +74,7 @@ class ImportUsersFromCSV(APIView):
         """Nhận file CSV và tạo nhiều user."""
         file = request.FILES.get("file")
         if not file:
-            return Response({"error": "Vui lòng tải lên file CSV."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(AppStatus.CSV_FILE_NOT_FOUND.message, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = AdminUserSerializer(context={"request": request})
         result = serializer.create_multiple_users(file)

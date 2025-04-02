@@ -1,3 +1,6 @@
+import csv
+import io
+
 from MSRV.apps.user.serializers_folder import (
     User,
     AppStatus,
@@ -9,7 +12,6 @@ import pandas as pd
 from MSRV.apps.utils.send_email import sent_mail_verification
 from MSRV.apps.user.serializers_folder.user_profile import UserProfileSerializer
 from MSRV.apps.utils.generate_password import generate_password
-from urllib3 import request
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -119,7 +121,7 @@ class AdminUserSerializer(serializers.ModelSerializer):
                 # Đọc file CSV
                 data = uploaded_file.read().decode("utf-8")
                 csv_reader = csv.reader(io.StringIO(data))
-                next(csv_reader, None)  # Bỏ qua dòng header nếu có
+                next(csv_reader, None)  # Bỏ qua dòng header nếu S
                 data_rows = [row for row in csv_reader]
 
             elif file_ext in ["xls", "xlsx"]:
