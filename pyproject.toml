@@ -22,7 +22,8 @@ dependencies = [
     "django-extensions (>=3.2.3,<4.0.0)",
     "cloudinary (>=1.42.2,<2.0.0)",
     "rest-framework-simplejwt (>=0.0.2,<0.0.3)",
-    "djangorestframework-simplejwt (>=5.4.0,<6.0.0)"
+    "djangorestframework-simplejwt (>=5.4.0,<6.0.0)",
+    "pandas (>=2.2.3,<3.0.0)"
 ]
 
 

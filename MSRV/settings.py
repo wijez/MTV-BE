@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'corsheaders',
     #apps
     'MSRV.apps.user',
-    'MSRV.apps.sr_activities'
+    'MSRV.apps.sr_activities',
+    'MSRV.apps.sponsorship_proposal',
 ]
 
 MIDDLEWARE = [
