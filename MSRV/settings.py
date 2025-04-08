@@ -214,3 +214,8 @@ SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
     "SCHEMA_PROTOCOLS": ["http", "https"],
 }
+
+# Minio
+MINIO_HOST = os.environ.get('MINIO_HOST')
+MINIO_USER = os.environ.get('MINIO_USER')
+MINIO_PASSWORD = os.environ.get('MINIO_PASSWORD')

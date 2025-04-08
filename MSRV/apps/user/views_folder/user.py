@@ -51,14 +51,15 @@ class UserDetailViewSet(GenericAPIView):
 class UpdateUserViewSet(GenericAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = UserProfileSerializer
+    parser_classes = (MultiPartParser, FormParser)
 
     def put(self, request, *args, **kwargs):
         profile = request.user.profile
-        serializer = self.get_serializer(profile, data=request.data)
+        serializer = self.get_serializer(profile, data=request.data, partial=True)
         if serializer.is_valid():
             profile = serializer.save()
             return Response(UserSerializer(profile.user).data)
-        return Response(serializer.errors)
+        return Response(serializer.errors, status=400)
 
 
 class AdminUserViewSet(viewsets.ModelViewSet):
