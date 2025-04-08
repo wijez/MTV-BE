@@ -12,6 +12,30 @@ services:
       - POSTGRES_PASSWORD=123456
     volumes:
       - msrv:/var/lib/postgresql/data
+    networks:
+      - msrv_network
+
+  minio-service:
+    image: minio/minio
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin@admin
+    volumes:
+      - msrv:/var/lib/minio/data
+    ports:
+      - "8082:9000"
+      - "8083:9001"
+
+    restart: unless-stopped
+    networks:
+      - msrv_network
+    depends_on:
+      - postgres_db_msrv_be
+    command: minio server /data --console-address ":9001"
 
 volumes:
   msrv:
+
+networks:
+  msrv_network:
+    driver: bridge

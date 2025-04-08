@@ -1,3 +1,1 @@
-from django.shortcuts import render
-
-# Create your views here.
+from MSRV.apps.sponsorship_proposal.views_folder.sponsoship_proposal import *

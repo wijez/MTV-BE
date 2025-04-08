@@ -65,3 +65,11 @@ class StatusSPEnum(EnumType):
     PASSED = "PASSED"
     NOT_PASSED = "NOT_PASSED"
     CANCELLED = "CANCELLED"
+
+class TypeFileEnum(EnumType):
+    VIDEO = "VIDEO"
+    IMAGE = "IMAGE"
+    DOCUMENT = "DOCUMENT"
+
+class FolderEnum(EnumType):
+    AVATAR = "AVATAR"
