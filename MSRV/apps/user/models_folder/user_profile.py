@@ -14,6 +14,7 @@ class UserProfile(models.Model):
     nation = models.CharField(max_length=64, null=False, blank=False)
     nationality = models.CharField(max_length=64, null=False, blank=False)
     religion = models.CharField(max_length=64, null=False, blank=False)
+    avatar = models.CharField(max_length=255, null=True, blank=False, default=None)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

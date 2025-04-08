@@ -32,5 +32,6 @@ urlpatterns = [
     #    path('admin/', admin.site.urls),
     path('', include("MSRV.apps.user.urls")),
     path('', include("MSRV.apps.sr_activities.urls")),
+    path('', include("MSRV.apps.sponsorship_proposal.urls")),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]

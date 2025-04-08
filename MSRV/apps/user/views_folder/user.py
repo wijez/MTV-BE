@@ -12,11 +12,12 @@ from MSRV.apps.user.serializers import (
     UserProfileSerializer,
     UserRegisterSerializer,
     AdminUserSerializer,
+    CustomTokenObtainPairSerializer,
 )
 from MSRV.apps.utils.role import IsAdminUser
 from MSRV.apps.utils.swagger import swagger_import_users
 from rest_framework import status
-
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 class RegisterViewSet(GenericAPIView):
     queryset = User.objects.all()
@@ -51,14 +52,15 @@ class UserDetailViewSet(GenericAPIView):
 class UpdateUserViewSet(GenericAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = UserProfileSerializer
+    parser_classes = (MultiPartParser, FormParser)
 
     def put(self, request, *args, **kwargs):
         profile = request.user.profile
-        serializer = self.get_serializer(profile, data=request.data)
+        serializer = self.get_serializer(profile, data=request.data, partial=True)
         if serializer.is_valid():
             profile = serializer.save()
             return Response(UserSerializer(profile.user).data)
-        return Response(serializer.errors)
+        return Response(serializer.errors, status=400)
 
 
 class AdminUserViewSet(viewsets.ModelViewSet):
@@ -80,3 +82,7 @@ class ImportUsersFromCSV(APIView):
         result = serializer.create_multiple_users(file)
 
         return Response(result, status=status.HTTP_201_CREATED)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
