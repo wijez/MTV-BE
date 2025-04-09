@@ -72,7 +72,7 @@ class ImportUsersFromCSV(APIView):
     parser_classes = (MultiPartParser, FormParser)
     @swagger_import_users()
     def post(self, request, *args, **kwargs):
-        """Nhận file CSV và tạo nhiều user."""
+
         file = request.FILES.get("file")
         if not file:
             return Response(AppStatus.CSV_FILE_NOT_FOUND.message, status=status.HTTP_400_BAD_REQUEST)

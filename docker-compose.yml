@@ -1,0 +1,68 @@
+services:
+  mtv-be-service:
+    build:
+      context: .
+    container_name: mtv-be-service
+    ports:
+      - "8080:8000"
+    networks:
+      - msrv_network
+    environment:
+      - DEBUG=0
+      - SECRET_KEY='django-insecure-0%+-5zv#nz$g)808!@y7b5m8-uxu7h=1k2%ro24@--zw!x*0o-'
+      - ALLOWED_HOSTS=*
+
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_HOST=postgres_db_msrv_be
+      - DB_PORT=5432
+
+      - EMAIL_HOST=smtp.gmail.com
+      - EMAIL_HOST_USER=thanhvy24042002@gmail.com
+      - EMAIL_HOST_PASSWORD=qkrv fywh dhjb ddtm
+      - EMAIL_PORT=587
+
+      - MINIO_HOST=http://minio-service:8082
+      - MINIO_USER=admin
+      - MINIO_PASSWORD=admin@admin
+    restart: unless-stopped
+
+  postgres_db_msrv_be:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5439:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - msrv:/var/lib/postgresql/data
+    networks:
+      - msrv_network
+
+  minio-service:
+    image: minio/minio
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin@admin
+    volumes:
+      - msrv:/var/lib/minio/data
+    ports:
+      - "8082:9000"
+      - "8083:9001"
+
+    restart: unless-stopped
+    networks:
+      - msrv_network
+    depends_on:
+      - postgres_db_msrv_be
+    command: minio server /data --console-address ":9001"
+
+volumes:
+  msrv:
+
+networks:
+  msrv_network:
+    driver: bridge
