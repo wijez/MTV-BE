@@ -1,0 +1,238 @@
+{
+  "Nhóm đề tài KHCN": {
+    "Đề tài nghiên cứu các cấp dùng cho NN, Ngành": 900,
+    "Đề tài cấp Bộ và tương đương": 750,
+    "Đề tài cấp Thành phố": 600,
+    "Đề tài KHCN cấp Trường": 450,
+    "Đề tài sáng kiến, sách chuyên khảo phục vụ giảng dạy": {
+      "100 (1TC)": 100,
+      "200 (2TC)": 200,
+      "300 (3TC)": 300,
+      "400 (4TC)": 400,
+      "500 (5TC)": 500,
+      "600 (6TC)": 600
+    },
+    "Bằng sáng chế, giải pháp hữu ích được cấp": {
+      "Trong nước": 600,
+      "Quốc tế": 1200
+    }
+  },
+  "Nhóm bài viết, sách": {
+    "Công bố bài báo khoa học": {
+      "Tạp chí ISI": {
+        "IF <= 0.8": 300,
+        "0.8 < IF <= 1.5": 600,
+        "1.5 < IF <= 2.5": 1200,
+        "IF > 2.5": 1500,
+        "Tạp chí Nature": 1800
+      },
+      "Tạp chí Scopus": 600,
+      "Tạp chí uy tín hội nghị quốc gia, Được tính điểm bởi HĐ chức danh GS": 450,
+      "Tạp chí quốc tế/kỷ yếu có ISSN ở nước ngoài": 350,
+      "Tạp chí quốc tế/kỷ yếu có ISSN ở Việt Nam": 280,
+      "Tạp chí/kỷ yếu hội thảo trong nước có ISSN": 225,
+      "Kỷ yếu hội thảo quốc tế có ISBN": 200,
+      "Tạp chí trong nước có ISBN": {
+        "Cấp quốc gia": 150,
+        "Cấp Bộ/ngành": 120,
+        "Cấp Tỉnh/Thành phố/Khu vực": 90,
+        "Cấp trường": 60
+      },
+      "Kỷ yếu hội thảo không có ISBN/ISSN": 50
+    },
+    "Xuất bản sách": {
+      "Quốc tế": {
+        "Chuyên khảo": 400,
+        "Giáo trình": 300,
+        "Tham khảo": 200,
+        "Hướng dẫn": 200
+      },
+      "Trong nước": {
+        "Chuyên khảo": 200,
+        "Giáo trình": 150,
+        "Tham khảo": 100,
+        "Hướng dẫn": 100
+      }
+    },
+    "Tải bản có chỉnh sửa": {
+      "Quốc tế": {
+        "Chuyên khảo": 100,
+        "Giáo trình": 66,
+        "Tham khảo": 50,
+        "Hướng dẫn": 50
+      },
+      "Trong nước": {
+        "Chuyên khảo": 50,
+        "Giáo trình": 33,
+        "Tham khảo": 25,
+        "Hướng dẫn": 25
+      }
+    },
+    "Giáo trình, tài liệu chuyên đề được biên dịch dùng cho sinh viên tham khảo được sử dụng cho hoạt đào tạo tại trường": 6,
+    "Dịch tài liệu chuyên môn theo yêu cầu bộ môn, của Trường": {
+      "Từ tiếng nước ngoài ra tiếng Việt": 6,
+      "Từ tiếng Việt ra tiếng nước Ngoài": 9
+    },
+    "Sáng kiến cải tiến hoạt động": {
+      "Hoàn toàn mới chưa áp dụng tại trường": 180,
+      "Cải tiến quy trình/ phương thức hoạt động hiện tại": 60
+    }
+  },
+  "Nhóm hướng dẫn sinh viên": {
+    "Hướng dẫn sinh viên NCKH": {
+      "Cấp Bộ": {
+        "Giải Nhất": 600,
+        "Giải Nhì": 450,
+        "Giải Ba": 375,
+        "Giải khuyến khích": 300,
+        "Giải chứng nhận": 150
+      },
+      "Cấp Thành phố": {
+        "Giải Nhất": 400,
+        "Giải Nhì": 300,
+        "Giải Ba": 250,
+        "Giải khuyến khích": 200,
+        "Giải chứng nhận": 100
+      },
+      "Cấp trường": {
+        "Giải Nhất": 300,
+        "Giải Nhì": 225,
+        "Giải Ba": 187.5,
+        "Giải khuyến khích": 150,
+        "Giải chứng nhận": 75
+      }
+    },
+    "Hướng dẫn sinh viên thực hiện đồ án dự thi được Nhà trường cử đi hoặc Hướng dẫn sinh viên tham dự các cuộc thi có liên quan đến các ngành đào tạo của trường": {
+      "Cấp Quốc tế": {
+        "Giải Nhất": 300,
+        "Giải Nhì": 225,
+        "Giải Ba": 187.5,
+        "Giải khuyến khích": 150,
+        "Giải chứng nhận": 75
+      },
+      "Cấp Quốc gia": {
+        "Giải Nhất": 200,
+        "Giải Nhì": 150,
+        "Giải Ba": 125,
+        "Giải khuyến khích": 100,
+        "Giải chứng nhận": 50
+      },
+      "Cấp Thành phố/Tổ chức/Hội nghề nghiệp": {
+        "Giải Nhất": 160,
+        "Giải Nhì": 120,
+        "Giải Ba": 100,
+        "Giải khuyến khích": 80,
+        "Giải chứng nhận": 40
+      },
+      "Cấp Trường": {
+        "Giải Nhất": 100,
+        "Giải Nhì": 75,
+        "Giải Ba": 62.5,
+        "Giải khuyến khích": 50,
+        "Giải chứng nhận": 25
+      }
+    },
+    "Hướng dẫn sinh viên tham dự Festival Sinh viên kiến trúc toàn quốc": {
+      "Trưởng đoàn": {
+        "Giải Nhất": 250,
+        "Giải Nhì": 187.5,
+        "Giải Ba": 156.25,
+        "Giải khuyến khích": 125,
+        "Giải chứng nhận": 62.5
+      },
+      "Thành viên thanh hướng dẫn": {
+        "Giải Nhất": 200,
+        "Giải Nhì": 150,
+        "Giải Ba": 125,
+        "Giải khuyến khích": 100,
+        "Giải chứng nhận": 50
+      }
+    }
+  },
+  "Nhóm công trình, tác phẩm của GV": {
+    "Công trình, đồ án, tác phẩm tham gia các cuộc thi do Nhà trường cử đi hoặc tác giả hoặc nhóm tác giả tự gửi tác phẩm dự thi dưới danh nghĩa GV của trường": {
+      "Cấp Quốc tế": {
+        "Giải Nhất": 480,
+        "Giải Nhì": 360,
+        "Giải Ba": 288,
+        "Giải khuyến khích": 240
+      },
+      "Ngành/Quốc gia": {
+        "Giải Nhất": 240,
+        "Giải Nhì": 180,
+        "Giải Ba": 144,
+        "Giải khuyến khích": 120
+      },
+      "Địa phương/Khu vực": {
+        "Giải Nhất": 180,
+        "Giải Nhì": 135,
+        "Giải Ba": 108,
+        "Giải khuyến khích": 90
+      },
+      "Trường": {
+        "Giải Nhất": 120,
+        "Giải Nhì": 90,
+        "Giải Ba": 72,
+        "Giải khuyến khích": 60
+      }
+    },
+    "Tổ chức triển lãm cá nhân về hội họa, điêu khắc, mỹ thuật ứng dụng, kiến trúc": {
+       "Cấp Quốc tế": {
+        "Giải Nhất": 720,
+        "Giải Nhì": 540,
+        "Giải Ba": 432,
+        "Giải khuyến khích": 360
+      },
+      "Ngành/Quốc gia": {
+        "Giải Nhất": 480,
+        "Giải Nhì": 360,
+        "Giải Ba": 288,
+        "Giải khuyến khích": 240
+      },
+      "Địa phương/Khu vực": {
+        "Giải Nhất": 360,
+        "Giải Nhì": 270,
+        "Giải Ba": 216,
+        "Giải khuyến khích": 180
+      },
+      "Trường": {
+        "Giải Nhất": 240,
+        "Giải Nhì": 180,
+        "Giải Ba": 144,
+        "Giải khuyến khích": 120
+      }
+    },
+    "Tham gia triển lãm (gởi công trình/đồ án/tác phẩm)": {
+      "Cấp Quốc tế": {
+        "Giải Nhất": 360,
+        "Giải Nhì": 270,
+        "Giải Ba": 216,
+        "Giải khuyến khích": 180
+      },
+      "Ngành/Quốc gia": {
+        "Giải Nhất": 180,
+        "Giải Nhì": 135,
+        "Giải Ba": 108,
+        "Giải khuyến khích": 90
+      },
+      "Địa phương/Khu vực": {
+        "Giải Nhất": 120,
+        "Giải Nhì": 90,
+        "Giải Ba": 72,
+        "Giải khuyến khích": 60
+      },
+      "Trường": {
+        "Giải Nhất": 45,
+        "Giải Nhì": 90,
+        "Giải Ba": 54,
+        "Giải khuyến khích": 45
+      }
+    }
+  },
+  "Nhóm hoạt động khác": {
+    "Tham dự hội thảo, hội nghị khoa học, Seminar chuyên đề": {},
+    "Thực hiện báo cáo khoa học tại hội thảo tại": {},
+    "Viết nhận xét phản biện cho các công trình khoa học theo yêu cầu của": {},
+    "Lần đầu mở mới ngành đào tạo": {}
+  }
+}
