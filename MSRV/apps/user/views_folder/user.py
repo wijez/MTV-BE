@@ -1,5 +1,5 @@
 from MSRV.apps.user.views_folder import (
-    Response, GenericAPIView, APIView, viewsets, IsAuthenticated, FormParser, MultiPartParser, swagger_auto_schema, openapi
+    Response, GenericAPIView, APIView, viewsets, IsAuthenticated, FormParser, MultiPartParser, swagger_auto_schema, openapi, Q
 )
 
 from MSRV.apps.user.models import  User
@@ -71,22 +71,19 @@ class AdminUserViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
     def filter_queryset(self, queryset):
-        email = self.request.query_params.get('email')
-        full_name = self.request.query_params.get('full_name')
+        queryset_user = self.request.query_params.get('queryset_user')
 
-        if email:
-            queryset = queryset.filter(email__icontains=email)
-        if full_name:
-            queryset = queryset.filter(full_name__icontains=full_name)
+        if queryset_user:
+            queryset = queryset.filter(
+                Q(email__icontains=queryset_user) | Q(full_name__icontains=queryset_user)
+            )
 
         return queryset
 
     @swagger_auto_schema(
         manual_parameters=[
-            openapi.Parameter('email', openapi.IN_QUERY, description="email",
+            openapi.Parameter('queryset_user', openapi.IN_QUERY, description="Search by email or full name",
                               type=openapi.TYPE_STRING),
-            openapi.Parameter('full_name', openapi.IN_QUERY, description="full_name",
-                              type=openapi.TYPE_STRING)
         ]
     )
     def list(self, request, *args, **kwargs):
