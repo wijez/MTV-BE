@@ -28,6 +28,10 @@ services:
       - MINIO_PASSWORD=admin@admin
     restart: unless-stopped
 
+    depends_on:
+      - postgres_db_msrv_be
+      - minio-service
+
   postgres_db_msrv_be:
     image: postgres:latest
     restart: always

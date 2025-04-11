@@ -73,3 +73,4 @@ class TypeFileEnum(EnumType):
 
 class FolderEnum(EnumType):
     AVATAR = "AVATAR"
+    BANNER = "BANNER"

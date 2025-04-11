@@ -1,8 +1,5 @@
-from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework.permissions import IsAuthenticated
-
 from MSRV.apps.user.views_folder import (
-    Response, GenericAPIView, APIView, viewsets,
+    Response, GenericAPIView, APIView, viewsets, IsAuthenticated, FormParser, MultiPartParser
 )
 
 from MSRV.apps.user.models import  User
