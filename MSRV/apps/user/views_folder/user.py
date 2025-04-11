@@ -1,5 +1,5 @@
 from MSRV.apps.user.views_folder import (
-    Response, GenericAPIView, APIView, viewsets, IsAuthenticated, FormParser, MultiPartParser
+    Response, GenericAPIView, APIView, viewsets, IsAuthenticated, FormParser, MultiPartParser, swagger_auto_schema, openapi
 )
 
 from MSRV.apps.user.models import  User
@@ -60,9 +60,38 @@ class UpdateUserViewSet(GenericAPIView):
 
 
 class AdminUserViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated, IsAdminUser)
     serializer_class = AdminUserSerializer
     queryset = User.objects.all()
+
+    def get_permissions(self):
+        if self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
+            permission_classes = [IsAuthenticated, IsAdminUser]
+        else:  # GET, HEAD, OPTIONS...
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
+
+    def filter_queryset(self, queryset):
+        email = self.request.query_params.get('email')
+        full_name = self.request.query_params.get('full_name')
+
+        if email:
+            queryset = queryset.filter(email__icontains=email)
+        if full_name:
+            queryset = queryset.filter(full_name__icontains=full_name)
+
+        return queryset
+
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter('email', openapi.IN_QUERY, description="email",
+                              type=openapi.TYPE_STRING),
+            openapi.Parameter('full_name', openapi.IN_QUERY, description="full_name",
+                              type=openapi.TYPE_STRING)
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
 
 
 class ImportUsersFromCSV(APIView):
