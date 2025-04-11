@@ -14,6 +14,7 @@ class AppStatus(Enum):
     TOKEN_INVALID = "TOKEN_INVALID", 400, "The token is invalid or expired."
     TOKEN_IS_INCORRECT = "TOKEN_IS_INCORRECT", 400, "The token is incorrect."
     CSV_FILE_NOT_FOUND = "CSV_FILE_NOT_FOUND", 400, "The CSV file not found."
+    REGISTER_SCIENTIFIC_RESEARCH_FAIL = "REGISTER_SCIENTIFIC_RESEARCH_FAIL", 400, "The registration scientific research failed."
 
     USER_NOT_EXIST = "USER_NOT_EXIST", 404, "User does not exist."
     USER_NOT_FORBIDDEN = "USER_NOT_FORBIDDEN", 403, "User not forbidden"
