@@ -1,3 +1,5 @@
+import io
+import zipfile
 from MSRV.apps.sr_activities.serializers_folder import (
     serializers, transaction, AppStatus
 )
@@ -93,4 +95,44 @@ class UpdateBannerScientificResearchSerializer(serializers.ModelSerializer):
             url = clone.upload_file(file_obj=file_banner, type_file=TypeFileEnum.IMAGE, folder=FolderEnum.BANNER)
             instance.banner = url
             instance.save()
+        return instance
+
+
+class UpdateDataScientificResearchSerializer(serializers.ModelSerializer):
+    file_zip = serializers.FileField(allow_empty_file=True, required=False)
+
+    class Meta:
+        model = ScientificResearch
+        fields = ['file_zip']
+
+    def update(self, instance, validated_data):
+        file_zip = validated_data.pop('file_zip', None)
+        data_files = []
+
+        if file_zip:
+            # Kiểm tra file có đúng định dạng zip không
+            if not zipfile.is_zipfile(file_zip):
+                raise serializers.ValidationError(AppStatus.FILE_INVALID.message)
+
+            zip_file = zipfile.ZipFile(file_zip)
+            clone = UpLoadFileToClone()
+
+            for file_info in zip_file.infolist():
+                if file_info.is_dir():
+                    continue  # Bỏ qua thư mục
+
+                file_data = zip_file.read(file_info.filename)
+                file_obj = io.BytesIO(file_data)
+                file_obj.name = file_info.filename  # Đặt tên cho file để upload
+
+                url = clone.upload_file(
+                    file_obj=file_obj,
+                    type_file=TypeFileEnum.DOCUMENT,
+                    folder=FolderEnum.DATA
+                )
+                data_files.append(url)
+
+            instance.data = data_files
+            instance.save()
+
         return instance

@@ -17,6 +17,7 @@ class ScientificResearch(models.Model):
     quantity = models.IntegerField(null=True, blank=True)
     time_volume = models.IntegerField(null=True, blank=True)
     banner = models.CharField(max_length=255, null=True, blank=True)
+    data = models.JSONField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

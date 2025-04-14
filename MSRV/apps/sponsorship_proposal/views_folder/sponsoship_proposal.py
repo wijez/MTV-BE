@@ -7,5 +7,6 @@ from MSRV.apps.sponsorship_proposal.serializers import (
 )
 
 class SponsorshipProposalViewSet(viewsets.ModelViewSet):
+
     queryset = SponsorshipProposal.objects.all()
     serializer_class = SponsorshipProposalSerializer
