@@ -1,3 +1,4 @@
+import os
 import uuid
 import json
 import boto3
@@ -26,6 +27,7 @@ class UpLoadFileToClone:
         self.cloud = s3
         self.create_bucket_and_set_policy(TypeFileEnum.VIDEO.lower())
         self.create_bucket_and_set_policy(TypeFileEnum.IMAGE.lower())
+        self.create_bucket_and_set_policy(TypeFileEnum.DOCUMENT.lower())
 
     def create_bucket_and_set_policy(self, bucket_name):
         bucket_policy = {
@@ -60,7 +62,7 @@ class UpLoadFileToClone:
             print(f"Đã xảy ra lỗi: {e}")
 
     def upload_file(self, file_obj, type_file, folder):
-        file_extension = self.get_file_extension(type_file=type_file)
+        file_extension = self.get_file_extension(file_name=file_obj.name)
         if not file_extension:
             return None
 
@@ -72,15 +74,8 @@ class UpLoadFileToClone:
 
 
     @staticmethod
-    def get_file_extension(type_file):
-        if type_file == TypeFileEnum.VIDEO.lower():
-            return ".webm"
-        elif type_file == TypeFileEnum.IMAGE:
-            return ".jpg"
-        elif type_file == TypeFileEnum.DOCUMENT:
-            return ".docx"
-        else:
-            raise None
+    def get_file_extension(file_name):
+        return os.path.splitext(file_name)[1]
 
     @staticmethod
     def get_name_file(file_extension, folder):

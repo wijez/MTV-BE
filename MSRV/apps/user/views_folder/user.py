@@ -90,7 +90,6 @@ class AdminUserViewSet(viewsets.ModelViewSet):
         return super().list(request, *args, **kwargs)
 
 
-
 class ImportUsersFromCSV(APIView):
     permission_classes = (IsAuthenticated, IsAdminUser)
     parser_classes = (MultiPartParser, FormParser)
