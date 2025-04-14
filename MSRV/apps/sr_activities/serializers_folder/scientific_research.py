@@ -1,5 +1,6 @@
 import io
 import zipfile
+import mimetypes
 from MSRV.apps.sr_activities.serializers_folder import (
     serializers, transaction, AppStatus
 )
@@ -35,7 +36,7 @@ class CreateScientificResearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScientificResearch
         fields = '__all__'
-        extra_kwargs = {'banner': {'read_only': True}}
+        extra_kwargs = {'banner': {'read_only': True}, 'data': {'read_only': True}}
 
     def create(self, validated_data):
         user = self.context['request'].user
@@ -78,7 +79,7 @@ class UpdateScientificResearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScientificResearch
         fields = '__all__'
-        extra_kwargs = {'banner': {'read_only': True}}
+        extra_kwargs = {'banner': {'read_only': True}, 'data': {'read_only': True}}
 
 
 class UpdateBannerScientificResearchSerializer(serializers.ModelSerializer):
@@ -124,6 +125,8 @@ class UpdateDataScientificResearchSerializer(serializers.ModelSerializer):
                 file_data = zip_file.read(file_info.filename)
                 file_obj = io.BytesIO(file_data)
                 file_obj.name = file_info.filename  # Đặt tên cho file để upload
+                content_type, _ = mimetypes.guess_type(file_obj.name)
+                file_obj.content_type = content_type
 
                 url = clone.upload_file(
                     file_obj=file_obj,

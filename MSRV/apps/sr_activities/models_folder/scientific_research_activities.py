@@ -17,7 +17,7 @@ class ScientificResearchActivity(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "sr_activities"  # Định danh tên bảng
+        db_table = "sr_activities"
 
     def __str__(self):
-        return f"{self.group} - {self.content[:50]}"  # Hiển thị nội dung ngắn gọn
+        return f"{self.group} - {self.content[:50]}"
