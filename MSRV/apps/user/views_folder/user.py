@@ -92,6 +92,7 @@ class AdminUserViewSet(viewsets.ModelViewSet):
 
 
 class ImportUsersFromCSV(APIView):
+    permission_classes = (IsAuthenticated, IsAdminUser)
     parser_classes = (MultiPartParser, FormParser)
     @swagger_import_users()
     def post(self, request, *args, **kwargs):
