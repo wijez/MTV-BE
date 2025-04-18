@@ -8,9 +8,6 @@ class ScientificResearchActivity(models.Model):
     group = models.CharField(max_length=50, null=False, blank=False, choices=GroupEnum.choices(),
                             default=GroupEnum.RESEARCH_PROJECTS)
     content = models.TextField()
-    conversion_time = models.IntegerField()
-    proof = models.CharField(max_length=255)
-    note = models.TextField(blank=True, null=True)
     input = models.JSONField()
 
     created_at = models.DateTimeField(auto_now_add=True)

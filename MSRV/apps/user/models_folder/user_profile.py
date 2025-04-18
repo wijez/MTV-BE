@@ -8,7 +8,7 @@ class UserProfile(models.Model):
                             default=DegreeEnum.TS)
     department = models.CharField(max_length=30, null=False, blank=False, choices=DepartmentEnum.choices(),
                             default=DepartmentEnum.INFORMATION_TECHNOLOGY)
-
+    base_point = models.PositiveIntegerField(default=0, editable=False)
     country = models.CharField(max_length=255, null=False, blank=False)
     address = models.CharField(max_length=255, null=False, blank=False)
     nation = models.CharField(max_length=64, null=False, blank=False)
@@ -21,3 +21,19 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"Profile of {self.user.full_name}"
+
+    def save(self, *args, **kwargs):
+        self.base_point = self.calculate_base_point()
+        super().save(*args, **kwargs)
+
+    def calculate_base_point(self):
+        mapping = {
+            'UN_TS_III': 600,
+            'TS_III': 650,
+            'UN_TS_II': 650,
+            'TS_II': 750,
+            'TS': 750,
+            'PGS': 800,
+            'GS': 850
+        }
+        return mapping.get(str(self.degree), 0)

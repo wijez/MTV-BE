@@ -26,21 +26,22 @@ class ScientificResearchSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class UserPointSerializer(serializers.Serializer):
+    id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    point = serializers.FloatField(min_value=0, required=False)
+
+
 class CreateScientificResearchSerializer(serializers.ModelSerializer):
-    list_user = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.all(),
-        many=True,
-        write_only=True
-    )
+    list_user = UserPointSerializer(many=True, write_only=True)
 
     class Meta:
         model = ScientificResearch
         fields = '__all__'
-        extra_kwargs = {'banner': {'read_only': True}, 'data': {'read_only': True}}
+        extra_kwargs = {'banner': {'read_only': True}}
 
     def create(self, validated_data):
         user = self.context['request'].user
-        list_user = validated_data.pop('list_user', [])
+        list_user_data = validated_data.pop('list_user', [])
 
         if not user:
             raise serializers.ValidationError(AppStatus.USER_NOT_EXIST.message)
@@ -54,18 +55,25 @@ class CreateScientificResearchSerializer(serializers.ModelSerializer):
                 UserScientificResearch.objects.create(
                     user=user,
                     scientific_research=scientific_research,
-                    is_leader=True
+                    is_leader=True,
+                    point = 0
                 )
 
                 # Gắn các user khác
-                UserScientificResearch.objects.bulk_create([
-                    UserScientificResearch(
+                bulk_data = []
+                for item in list_user_data:
+                    u = item['id']
+                    if u == user:
+                        continue
+                    point = item.get('point', 0)
+                    bulk_data.append(UserScientificResearch(
                         user=u,
                         scientific_research=scientific_research,
-                        is_leader=False
-                    )
-                    for u in list_user if u != user
-                ])
+                        is_leader=False,
+                        point=point
+                    ))
+
+                UserScientificResearch.objects.bulk_create(bulk_data)
 
                 return scientific_research
 
@@ -79,7 +87,7 @@ class UpdateScientificResearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScientificResearch
         fields = '__all__'
-        extra_kwargs = {'banner': {'read_only': True}, 'data': {'read_only': True}}
+        extra_kwargs = {'banner': {'read_only': True}}
 
 
 class UpdateBannerScientificResearchSerializer(serializers.ModelSerializer):
@@ -139,3 +147,4 @@ class UpdateDataScientificResearchSerializer(serializers.ModelSerializer):
             instance.save()
 
         return instance
+

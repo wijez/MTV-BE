@@ -9,6 +9,7 @@ class AppStatus(Enum):
     REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS', 200, "Register user successfully, please check your email."
     IMPORT_VIDEO_SUCCESS = 'IMPORT_VIDEO_SUCCESS', 200, "Video imported successfully."
 
+    EMAIL_FULLNAME_NOT_FOUND = "EMAIL_FULLNAME_NOT_FOUND", 400, "Email or name not found"
     EMAIL_ALREADY_EXIST = "EMAIL_ALREADY_EXIST", 400, "Email already exist."
     REGISTER_USER_FAIL = "REGISTER_USER_FAIL", 400, "Register user failed."
     TOKEN_INVALID = "TOKEN_INVALID", 400, "The token is invalid or expired."

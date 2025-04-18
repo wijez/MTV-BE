@@ -28,6 +28,10 @@ class DegreeEnum(EnumType):
     THS = 'THS'
     PGS = 'PGS'
     GS = 'GS'
+    UN_TS_III = 'UN_TS_III'
+    TS_III = 'TS_III'
+    UN_TS_II = 'UN_TS_II'
+    TS_II = 'TS_II'
 
 class DepartmentEnum(EnumType):
     HR = "HR"

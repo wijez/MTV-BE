@@ -172,3 +172,28 @@ class AdminUserSerializer(serializers.ModelSerializer):
 
         except Exception as e:
             raise serializers.ValidationError({"error": str(e)})
+
+
+class PasswordResetSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    def validate_email(self, value):
+        try:
+            user = User.objects.get(email=value)
+            if not user.is_active:
+                raise serializers.ValidationError("User account is inactive.")
+            self.user = user
+        except User.DoesNotExist:
+            raise serializers.ValidationError("No user is associated with this email.")
+        return value
+
+    def send_reset_email(self):
+        sent_mail_verification(user=self.user, type_mail=TypeEmailEnum.RESET_PASSWORD)
+
+
+
+class UserSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'full_name', 'role', 'is_active', 'date_joined']
+
