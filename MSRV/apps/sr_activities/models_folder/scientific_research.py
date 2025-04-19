@@ -13,10 +13,10 @@ class ScientificResearch(models.Model):
     description = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=50, null=False, blank=False, choices=StatusSREnum.choices(),
                             default=StatusSREnum.OPEN)
-    level = models.CharField(max_length=100)
     quantity = models.IntegerField(null=True, blank=True)
     time_volume = models.IntegerField(null=True, blank=True)
     banner = models.CharField(max_length=255, null=True, blank=True)
+    documents = models.URLField(null=True, blank=True)
     data = models.JSONField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
