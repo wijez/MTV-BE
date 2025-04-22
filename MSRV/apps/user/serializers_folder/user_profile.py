@@ -15,7 +15,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         exclude = ['user']
-        extra_kwargs = {'avatar': {'read_only': True}}
+        extra_kwargs = {'avatar': {'read_only': True},
+                        'base_point': {'read_only': True},
+                        'created_at': {'read_only': True},
+                        'updated_at': {'read_only': True}
+                        }
 
     def update(self, instance, validated_data):
         file = validated_data.pop('file', None)

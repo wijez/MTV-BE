@@ -33,6 +33,7 @@ class RegisterViewSet(GenericAPIView):
             serializer.save()
             return Response(AppStatus.REGISTER_USER_SUCCESS.message)
         else:
+            print("Validation errors:", serializer.errors)
             user = User.objects.filter(email=serializer.data['email']).first()
             if user and not user.is_active:
                 user.set_password(serializer.data['password'])
