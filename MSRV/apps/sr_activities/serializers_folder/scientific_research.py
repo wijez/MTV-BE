@@ -51,15 +51,18 @@ class CreateScientificResearchSerializer(serializers.ModelSerializer):
                 # Tạo hoạt động khoa học
                 scientific_research = super().create(validated_data)
 
-                # Gắn request.user là leader
+                # Tính tổng điểm các user khác
+                total_point = sum(item.get('point', 0) for item in list_user_data)
+                leader_point = scientific_research.time_volume - total_point
+
+                # Gắn request.user là leader với point đã tính
                 UserScientificResearch.objects.create(
                     user=user,
                     scientific_research=scientific_research,
                     is_leader=True,
-                    point = 0
+                    point=leader_point
                 )
 
-                # Gắn các user khác
                 bulk_data = []
                 for item in list_user_data:
                     u = item['id']

@@ -9,4 +9,4 @@ class UserScientificResearchViewSet(viewsets.ModelViewSet):
     queryset = UserScientificResearch.objects.all()
     serializer_class = UserScientificResearchSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ['scientific_research__id']
+    search_fields = ['scientific_research__id',  'user__id']
