@@ -11,8 +11,7 @@ class ScientificResearch(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)
     number_member = models.IntegerField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-    status = models.CharField(max_length=50, null=False, blank=False, choices=StatusSREnum.choices(),
-                            default=StatusSREnum.OPEN)
+    status = models.CharField(max_length=50, null=False, blank=False, choices=StatusSREnum.choices(), default=StatusSREnum.OPEN)
     quantity = models.IntegerField(null=True, blank=True)
     time_volume = models.IntegerField(null=True, blank=True)
     banner = models.CharField(max_length=255, null=True, blank=True)

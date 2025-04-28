@@ -10,9 +10,9 @@ from MSRV.apps.user.models import  User
 from MSRV.apps.utils.constant import AppStatus
 from MSRV.apps.user.serializers import (
     UserSerializer,
+    AdminUserSerializer,
     UserProfileSerializer,
     UserRegisterSerializer,
-    AdminUserSerializer,
     CustomTokenObtainPairSerializer,
     PasswordResetSerializer,
 )
@@ -101,7 +101,7 @@ class PasswordResetView(GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             serializer.send_reset_email()
-            return Response({"message": "Password reset email sent successfully."}, status=status.HTTP_200_OK)
+            return Response(AppStatus.RESET_PASSED.message, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -121,7 +121,7 @@ class UserSearchView(APIView):
     def get(self, request):
         query = request.query_params.get('q', None)
         if not query:
-            return Response({"detail": "Missing search parameter 'q'."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(AppStatus.MISSING_SEARCH_PARAMETER.message, status=status.HTTP_400_BAD_REQUEST)
 
         users = User.objects.filter(
             Q(email__icontains=query) | Q(full_name__icontains=query),

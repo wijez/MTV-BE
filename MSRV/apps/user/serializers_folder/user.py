@@ -145,7 +145,7 @@ class AdminUserSerializer(serializers.ModelSerializer):
                 data_rows = df.values.tolist()
 
             else:
-                raise serializers.ValidationError("Chỉ hỗ trợ file CSV hoặc Excel (XLS/XLSX)")
+                raise serializers.ValidationError(AppStatus.ONLY_SUPPORT_CSV_OR_EXCEL.message)
 
             created_users = []
             errors = []
@@ -214,10 +214,10 @@ class PasswordResetSerializer(serializers.Serializer):
         try:
             user = User.objects.get(email=value)
             if not user.is_active:
-                raise serializers.ValidationError("User account is inactive.")
+                raise serializers.ValidationError(AppStatus.USER_IS_ACTIVE.message)
             self.user = user
-        except User.DoesNotExist:
-            raise serializers.ValidationError("No user is associated with this email.")
+        except Exception as e:
+            raise serializers.ValidationError(AppStatus.USER_NOT_EXIST.message.update({"error": str(e)}))
         return value
 
     def send_reset_email(self):
